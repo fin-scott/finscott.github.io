@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fin Scott — CA · Energy &amp; Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ==========================================================
+   TO UPDATE THIS PAGE
+   - Add a deal:      copy a .deal-card block in the Deal Cards section
+                      and add a matching entry to the DEALS array in the
+                      <script> at the bottom of the file.
+   - Add a job:       copy an .exp-item block in the Experience section.
+   - Update details:  edit text directly in the HTML below.
+   - GitHub Pages:    save this file as index.html, upload to your repo.
+   ========================================================== */
+
+:root {
+  --navy:     #0d1f2d;
+  --navy-mid: #152535;
+  --navy-card:#1a2e40;
+  --teal:     #2a8fa8;
+  --teal-l:   #3eb3d0;
+  --gold:     #c8a96e;
+  --gold-l:   #dfc190;
+  --cream:    #f0ebe2;
+  --muted:    #7a9ab0;
+  --rule:     rgba(200,169,110,.18);
+  --pad:      20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--navy); color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 var(--pad) 52px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 70% at 80% 20%, rgba(42,143,168,.14) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 5% 90%, rgba(200,169,110,.09) 0%, transparent 55%);
+}
+.hero svg { position: absolute; inset: 0; opacity: .035; pointer-events: none; }
+@keyframes up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.h-rule  { width:36px; height:2px; background:var(--gold); margin-bottom:22px; animation:up .7s ease both; }
+.h-eye   { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--teal-l); margin-bottom:14px; animation:up .8s .1s ease both; }
+.h-name  { font-family:'Cormorant Garamond',serif; font-size:clamp(50px,12vw,86px); font-weight:300; line-height:.95; letter-spacing:-.02em; color:#fff; margin-bottom:10px; animation:up .9s .15s ease both; }
+.h-name em { font-style:italic; color:var(--gold-l); }
+.h-sub   { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,4vw,22px); font-weight:300; font-style:italic; color:var(--muted); margin-bottom:32px; line-height:1.3; animation:up .9s .2s ease both; }
+.h-chips { display:flex; flex-wrap:wrap; gap:8px; animation:up 1s .28s ease both; }
+.chip    { display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.05); border:1px solid rgba(200,169,110,.2); padding:6px 12px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); }
+.chip-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); }
+.h-scroll { margin-top:36px; display:flex; align-items:center; gap:10px; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(122,154,176,.45); animation:up 1s .5s ease both; }
+.h-scroll::before { content:''; width:24px; height:1px; background:rgba(122,154,176,.35); }
+
+/* ---- SECTIONS ---- */
+.sec { padding:56px var(--pad); border-top:1px solid var(--rule); }
+.sec-lbl { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.sec-h   { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,7vw,44px); font-weight:300; color:#fff; margin-bottom:32px; line-height:1.1; }
+.reveal  { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.vis { opacity:1; transform:none; }
+
+/* ---- ABOUT ---- */
+.about-text p { color:#9ab4c5; font-size:15px; line-height:1.8; margin-bottom:18px; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:28px; }
+.s-card { background:var(--navy-mid); padding:20px 16px; border:1px solid rgba(200,169,110,.1); transition:border-color .3s; }
+.s-card:hover { border-color:rgba(200,169,110,.35); }
+.s-num { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--gold-l); line-height:1; margin-bottom:4px; }
+.s-lbl { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+
+/* ---- KPI ROW ---- */
+.kpi-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-bottom:32px; }
+.kpi-box { background:var(--navy-card); padding:20px 12px; border:1px solid rgba(200,169,110,.08); text-align:center; }
+.kpi-n   { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,7vw,42px); font-weight:300; color:var(--gold-l); line-height:1; margin-bottom:6px; }
+.kpi-l   { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); line-height:1.4; }
+
+/* ---- CHART ---- */
+.chart-wrap { background:var(--navy-card); border:1px solid var(--rule); padding:20px 16px 12px; margin-bottom:2px; }
+.chart-hdr  { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:6px; }
+.chart-t    { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+.chart-hint { font-family:'DM Mono',monospace; font-size:9px; color:var(--muted); opacity:.7; }
+.chart-scroll { overflow-x:auto; overflow-y:visible; padding-bottom:4px; }
+.chart-scroll::-webkit-scrollbar { height:3px; }
+.chart-scroll::-webkit-scrollbar-thumb { background:rgba(200,169,110,.3); }
+.chart-inner { display:flex; align-items:flex-end; gap:6px; height:190px; min-width:560px; padding:20px 4px 0; position:relative; }
+.c-grid-line { position:absolute; left:0; right:0; height:1px; background:rgba(255,255,255,.05); }
+.bar-col  { flex:1; min-width:42px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; cursor:pointer; }
+.bar-fill { width:80%; background:var(--teal); border-radius:1px 1px 0 0; height:0; transition:height 1.1s cubic-bezier(.16,1,.3,1), background .2s; position:relative; }
+.bar-fill::after { content:attr(data-val); position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-family:'DM Mono',monospace; font-size:7px; color:var(--gold); white-space:nowrap; opacity:0; transition:opacity .15s; pointer-events:none; }
+.bar-col:hover .bar-fill, .bar-col.active .bar-fill { background:var(--gold); }
+.bar-col:hover .bar-fill::after, .bar-col.active .bar-fill::after { opacity:1; }
+.bar-lbl  { font-family:'DM Mono',monospace; font-size:7.5px; color:var(--muted); margin-top:5px; text-align:center; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+.bar-col.active .bar-lbl { color:var(--gold); }
+
+/* ---- DEAL PANEL ---- */
+.deal-panel { background:var(--navy-mid); border:1px solid rgba(200,169,110,.25); padding:22px 18px; display:none; margin-bottom:2px; }
+.deal-panel.show { display:block; }
+.dp-top   { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; gap:12px; }
+.dp-close { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); cursor:pointer; padding:4px 10px; border:1px solid rgba(255,255,255,.12); white-space:nowrap; flex-shrink:0; }
+.dp-close:hover { color:var(--gold); border-color:var(--gold); }
+.dp-ey  { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.dp-nm  { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:#fff; line-height:1.1; margin-bottom:4px; }
+.dp-rl  { font-family:'DM Mono',monospace; font-size:10px; color:var(--teal-l); margin-bottom:12px; }
+.dp-badge       { display:inline-block; font-family:'DM Mono',monospace; font-size:11px; background:var(--gold); color:var(--navy); padding:4px 12px; margin-bottom:14px; }
+.dp-badge.soft  { background:transparent; color:var(--gold); border:1px solid rgba(200,169,110,.4); }
+.dp-badge.red   { background:transparent; color:#e89090; border:1px solid rgba(200,80,80,.35); }
+.dp-meta  { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
+.dp-mi label { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:3px; }
+.dp-mi span  { font-size:13px; color:var(--cream); line-height:1.3; }
+.dp-desc  { font-size:14px; color:#8fafc2; line-height:1.7; margin-bottom:14px; }
+.dp-cons-hd { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.dp-cons-list { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+.dp-con   { display:flex; gap:10px; font-size:13px; color:#8fafc2; line-height:1.55; }
+.dp-con::before { content:' - '; color:var(--gold); flex-shrink:0; font-family:'DM Mono',monospace; font-size:10px; margin-top:1px; }
+.dp-tags  { display:flex; flex-wrap:wrap; gap:5px; }
+.dtag     { padding:3px 10px; background:rgba(42,143,168,.08); border:1px solid rgba(42,143,168,.18); font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.07em; color:var(--teal-l); }
+.dtag.sell { background:rgba(200,169,110,.08); border-color:rgba(200,169,110,.2); color:var(--gold); }
+.dtag.red  { background:rgba(200,80,80,.08); border-color:rgba(200,80,80,.2); color:#e89090; }
+
+/* ---- FILTER BAR ---- */
+.fbar { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px; }
+.fbtn { padding:7px 14px; background:transparent; border:1px solid rgba(200,169,110,.2); font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:all .2s; white-space:nowrap; }
+.fbtn:hover, .fbtn.active { background:rgba(200,169,110,.1); border-color:var(--gold); color:var(--gold); }
+
+/* ---- DEAL CARDS ---- */
+.deal-grid { display:grid; grid-template-columns:1fr; gap:2px; }
+.deal-card { background:var(--navy-card); border:1px solid rgba(200,169,110,.07); padding:20px 18px; transition:border-color .3s, transform .25s; position:relative; overflow:hidden; }
+.deal-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--gold); opacity:0; transition:opacity .25s; }
+.deal-card:hover { border-color:rgba(200,169,110,.25); transform:translateY(-2px); }
+.deal-card:hover::before { opacity:1; }
+.deal-card.hidden { display:none; }
+.dc-head  { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:9px; }
+.dc-client{ font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:#fff; line-height:1.15; }
+.vbadge   { font-family:'DM Mono',monospace; font-size:9px; color:var(--navy); background:var(--gold); padding:3px 9px; white-space:nowrap; flex-shrink:0; align-self:flex-start; }
+.vbadge.soft { background:transparent; color:var(--gold); border:1px solid rgba(200,169,110,.35); }
+.vbadge.red  { background:transparent; color:#e89090; border:1px solid rgba(200,80,80,.3); }
+.dc-role  { font-size:11px; color:var(--teal-l); font-family:'DM Mono',monospace; letter-spacing:.05em; margin-bottom:8px; }
+.dc-desc  { font-size:13px; color:#7a97aa; line-height:1.65; margin-bottom:11px; }
+.dc-tags  { display:flex; flex-wrap:wrap; gap:4px; }
+
+/* ---- SECTOR CHART ---- */
+.sector-chart { margin-top:40px; }
+.sc-hd  { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.sc-row { display:grid; grid-template-columns:100px 1fr 60px; align-items:center; gap:12px; margin-bottom:11px; }
+.sc-nm  { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); }
+.sc-track { height:5px; background:rgba(255,255,255,.05); overflow:hidden; }
+.sc-fill  { height:100%; background:var(--teal); width:0; transition:width 1.4s cubic-bezier(.16,1,.3,1); }
+.sc-ct  { font-family:'DM Mono',monospace; font-size:10px; color:var(--gold); text-align:right; }
+
+/* ---- EXPERIENCE ---- */
+.exp-item { padding:30px 0; border-bottom:1px solid var(--rule); }
+.exp-item:last-child { border-bottom:none; }
+.exp-top  { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:5px; }
+.exp-co   { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:#fff; }
+.exp-badge{ font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(200,169,110,.3); padding:3px 9px; white-space:nowrap; }
+.exp-per  { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); margin-bottom:3px; }
+.exp-loc  { font-family:'DM Mono',monospace; font-size:9px; color:rgba(138,179,203,.45); margin-bottom:14px; }
+.exp-role { font-size:15px; font-weight:600; color:var(--cream); margin-bottom:8px; }
+.exp-desc { color:#8ba3b5; font-size:14px; line-height:1.75; margin-bottom:12px; }
+.sub-list { display:flex; flex-direction:column; gap:13px; margin-bottom:16px; }
+.sub      { padding-left:14px; border-left:2px solid rgba(200,169,110,.18); }
+.sub-t    { font-size:13px; font-weight:600; color:var(--cream); margin-bottom:2px; }
+.sub-p    { font-family:'DM Mono',monospace; font-size:9px; color:var(--muted); margin-bottom:2px; }
+.sub-l    { font-family:'DM Mono',monospace; font-size:9px; color:rgba(138,179,203,.4); }
+.etags    { display:flex; flex-wrap:wrap; gap:5px; }
+.etag     { padding:3px 10px; background:rgba(42,143,168,.08); border:1px solid rgba(42,143,168,.18); font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.07em; color:var(--teal-l); }
+
+/* ---- EDUCATION ---- */
+.edu-grid { display:grid; grid-template-columns:1fr; gap:2px; }
+.edu-card { background:var(--navy-mid); padding:26px 20px; border:1px solid rgba(200,169,110,.08); transition:border-color .3s; position:relative; overflow:hidden; }
+.edu-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--gold); opacity:0; transition:opacity .3s; }
+.edu-card:hover { border-color:rgba(200,169,110,.28); }
+.edu-card:hover::before { opacity:1; }
+.edu-i { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:#fff; margin-bottom:5px; }
+.edu-d { font-size:13px; color:#8ba3b5; margin-bottom:5px; line-height:1.45; }
+.edu-y { font-family:'DM Mono',monospace; font-size:9px; color:var(--gold); letter-spacing:.1em; }
+
+/* ---- SKILLS ---- */
+.sk-list { display:flex; flex-direction:column; gap:11px; margin-bottom:30px; }
+.sk-row  { display:flex; justify-content:space-between; align-items:center; padding-bottom:11px; border-bottom:1px solid rgba(255,255,255,.05); }
+.sk-nm   { font-size:14px; color:var(--cream); }
+.sk-tr   { width:88px; height:2px; background:rgba(255,255,255,.08); flex-shrink:0; }
+.sk-fi   { height:100%; background:var(--teal); width:0; transition:width 1.4s cubic-bezier(.16,1,.3,1); }
+.pills   { display:flex; flex-wrap:wrap; gap:7px; }
+.pill    { padding:5px 14px; border:1px solid rgba(200,169,110,.18); font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.09em; color:var(--cream); transition:all .22s; }
+.pill:hover { background:rgba(200,169,110,.07); border-color:rgba(200,169,110,.45); color:var(--gold-l); }
+
+/* ---- CONNECT ---- */
+.connect { padding:52px var(--pad); border-top:1px solid var(--rule); }
+.connect h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,7vw,40px); font-weight:300; color:#fff; margin-bottom:8px; }
+.connect p  { color:var(--muted); font-size:14px; margin-bottom:28px; }
+.clinks { display:flex; gap:10px; flex-wrap:wrap; }
+.cbtn   { display:inline-flex; align-items:center; padding:13px 22px; border:1px solid; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; transition:all .22s; cursor:pointer; background:transparent; }
+.cbtn.primary { background:var(--gold); border-color:var(--gold); color:var(--navy); }
+.cbtn.primary:hover { background:var(--gold-l); }
+.cbtn.secondary { border-color:rgba(200,169,110,.3); color:var(--gold); }
+.cbtn.secondary:hover { border-color:var(--gold); background:rgba(200,169,110,.06); }
+
+footer { padding:22px var(--pad); border-top:1px solid rgba(255,255,255,.04); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+footer span { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; color:rgba(138,179,203,.35); }
+
+/* ---- RESPONSIVE ---- */
+@media (min-width:600px) {
+  .deal-grid { grid-template-columns:1fr 1fr; }
+  .edu-grid  { grid-template-columns:1fr 1fr 1fr; }
+}
+@media (min-width:768px) {
+  :root { --pad:48px; }
+  .about-cols { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .stat-grid  { margin-top:0; }
+  .sc-row     { grid-template-columns:130px 1fr 70px; }
+}
+@media (min-width:960px) {
+  :root { --pad:60px; }
+  .deal-grid { grid-template-columns:1fr 1fr 1fr; }
+}
+</style>
+
+<!-- ============================================================
+  PAGE CONTENT
+  ============================================================ -->
+
+<!-- HERO -->
+<header class="hero">
+  <svg viewBox="0 0 400 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="80"  y1="0" x2="80"  y2="700" stroke="white" stroke-width=".5"/>
+    <line x1="160" y1="0" x2="160" y2="700" stroke="white" stroke-width=".5"/>
+    <line x1="240" y1="0" x2="240" y2="700" stroke="white" stroke-width=".5"/>
+    <line x1="320" y1="0" x2="320" y2="700" stroke="white" stroke-width=".5"/>
+    <line x1="0" y1="175" x2="400" y2="175" stroke="white" stroke-width=".5"/>
+    <line x1="0" y1="350" x2="400" y2="350" stroke="white" stroke-width=".5"/>
+    <line x1="0" y1="525" x2="400" y2="525" stroke="white" stroke-width=".5"/>
+  </svg>
+  <div class="hero-bg"></div>
+  <div class="h-rule"></div>
+  <p class="h-eye">CA · Energy & Finance · Sydney, Australia</p>
+  <h1 class="h-name"><em>Fin</em> Scott</h1>
+  <p class="h-sub">Energy Solutions  -  Commercial Finance · Chartered Accountant</p>
+  <div class="h-chips">
+    <div class="chip"><span class="chip-dot"></span>Ampol · Current</div>
+    <div class="chip"><span class="chip-dot"></span>EY · 6 yrs</div>
+    <div class="chip"><span class="chip-dot"></span>CA · ICANZ</div>
+    <div class="chip"><span class="chip-dot"></span>10+ Transactions</div>
+  </div>
+  <div class="h-scroll">Scroll to explore</div>
+</header>
+
+<!-- ABOUT -->
+<section class="sec">
+  <p class="sec-lbl">Profile</p>
+  <h2 class="sec-h reveal">About</h2>
+  <div class="about-cols reveal">
+    <div class="about-text">
+      <p>Fin is an Analyst in Ampol's Future Energy  -  Commercial Finance team, focused on energy transition and decarbonisation, supporting the company's goal of net zero by 2040.</p>
+      <p>Previously a Manager in EY's Transaction Diligence practice across Sydney and New York, Fin has executed buy-side and sell-side financial due diligence across M&A transactions for private equity and corporate clients globally  -  spanning adjusted EBITDA analysis, working capital, net debt, and SPA/PPA review.</p>
+      <p>CA-accredited (Chartered Accountants ANZ). Bachelor of Accounting Co-op (Distinction) from UTS Sydney. Motivated by challenge professionally and personally, including humanitarian projects in Cambodia and competitive sport.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="s-card"><div class="s-num">6+</div><div class="s-lbl">Yrs Experience</div></div>
+      <div class="s-card"><div class="s-num">CA</div><div class="s-lbl">Chartered Accountant</div></div>
+      <div class="s-card"><div class="s-num">10+</div><div class="s-lbl">M&A Transactions</div></div>
+      <div class="s-card"><div class="s-num">3</div><div class="s-lbl">Countries</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="sec" style="background:var(--navy-mid)" id="deals">
+  <p class="sec-lbl">Transaction Portfolio</p>
+  <h2 class="sec-h reveal">Deal Experience</h2>
+
+  <!-- KPI Strip -->
+  <div class="kpi-row reveal">
+    <div class="kpi-box"><div class="kpi-n" id="kpiCount">$0B+</div><div class="kpi-l">Aggregate Deal Value (visible)</div></div>
+    <div class="kpi-box"><div class="kpi-n">10+</div><div class="kpi-l">Transactions Executed</div></div>
+    <div class="kpi-box"><div class="kpi-n">7</div><div class="kpi-l">Sectors Covered</div></div>
+  </div>
+
+  <!-- Bar Chart -->
+  <div class="reveal">
+    <div class="chart-wrap">
+      <div class="chart-hdr">
+        <span class="chart-t">Deal Value by Transaction (USD / AUD bn)</span>
+        <span class="chart-hint">Tap a bar for details &darr;</span>
+      </div>
+      <div class="chart-scroll">
+        <div class="chart-inner" id="chartInner">
+          <div class="c-grid-line" style="bottom:75%"></div>
+          <div class="c-grid-line" style="bottom:50%"></div>
+          <div class="c-grid-line" style="bottom:25%"></div>
+          <!-- Bars injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Deal detail panel -->
+    <div class="deal-panel" id="dealPanel">
+      <div class="dp-top">
+        <div>
+          <div class="dp-ey" id="dpEy"></div>
+          <div class="dp-nm" id="dpNm"></div>
+          <div class="dp-rl" id="dpRl"></div>
+          <div id="dpBadge"></div>
+        </div>
+        <button class="dp-close" id="dpClose">&#x2715; Close</button>
+      </div>
+      <div class="dp-meta" id="dpMeta"></div>
+      <p class="dp-desc" id="dpDesc"></p>
+      <div class="dp-cons-hd">Key Diligence Considerations</div>
+      <div class="dp-cons-list" id="dpCons"></div>
+      <div class="dp-tags" id="dpTags"></div>
+    </div>
+  </div>
+
+  <!-- Filter buttons -->
+  <!-- TO ADD A NEW FILTER: add a button here with data-f="yoursector"
+       and add that sector string to the sectors[] array of your deal cards below -->
+  <div class="fbar reveal" style="margin-top:40px">
+    <button class="fbtn active" data-f="all">All</button>
+    <button class="fbtn" data-f="technology">Technology</button>
+    <button class="fbtn" data-f="infrastructure">Infrastructure</button>
+    <button class="fbtn" data-f="gaming">Gaming</button>
+    <button class="fbtn" data-f="waste">Environmental</button>
+    <button class="fbtn" data-f="media">Media</button>
+    <button class="fbtn" data-f="retail">Retail</button>
+    <button class="fbtn" data-f="sell-side">Sell-Side</button>
+  </div>
+
+  <!-- Deal Cards -->
+  <!-- TO ADD A DEAL CARD: copy one block below and paste it here.
+       data-s = comma-separated sector keys matching the filter buttons above.
+       Also add a matching entry to the DEALS array in the <script> at the bottom. -->
+  <div class="deal-grid">
+
+    <div class="deal-card" data-id="vicroads" data-s="infrastructure">
+      <div class="dc-head">
+        <div class="dc-client">Macquarie Asset Management</div>
+        <div class="vbadge">AUD $7.9B</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">40-year JV with Victorian Government to operate VicRoads' registration, licensing & custom plates businesses. Largest government services privatisation in Victorian history.</p>
+      <div class="dc-tags">
+        <span class="dtag">Infrastructure</span><span class="dtag">Government JV</span><span class="dtag">Concession</span><span class="dtag">Australia</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="coupa" data-s="technology">
+      <div class="dc-head">
+        <div class="dc-client">Warburg Pincus</div>
+        <div class="vbadge red">USD $8.0B EV</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Unsuccessful bid for Coupa Software (NASDAQ: COUP), cloud Business Spend Management. Won by Thoma Bravo at a 77% premium to unaffected share price.</p>
+      <div class="dc-tags">
+        <span class="dtag red">Unsuccessful</span><span class="dtag">SaaS</span><span class="dtag">Technology</span><span class="dtag">Private Equity</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="entain" data-s="gaming">
+      <div class="dc-head">
+        <div class="dc-client">Entain Group</div>
+        <div class="vbadge soft">AUD ~$3.5B</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Potential acquisition of WA TAB from Tabcorp. Would have created Australia's largest integrated wagering operator with ~47% combined market share.</p>
+      <div class="dc-tags">
+        <span class="dtag">Gaming</span><span class="dtag">Wagering</span><span class="dtag">Australia</span><span class="dtag">Regulatory</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="fanatics" data-s="media">
+      <div class="dc-head">
+        <div class="dc-client">Fanatics Collectibles</div>
+        <div class="vbadge soft">~USD $2B+</div>
+      </div>
+      <div class="dc-role">Financial Due Diligence</div>
+      <p class="dc-desc">Restructuring & acceleration of Panini America licenses and NFT rights  -  NBA, NFL, UFC, WWE & CLC. Consolidation of all major US sports card licenses.</p>
+      <div class="dc-tags">
+        <span class="dtag">Sports Licensing</span><span class="dtag">Media</span><span class="dtag">NFT</span><span class="dtag">NBA · NFL · UFC</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="geelong" data-s="infrastructure,sell-side">
+      <div class="dc-head">
+        <div class="dc-client">Brookfield Asset Management</div>
+        <div class="vbadge soft">AUD ~$1.1B</div>
+      </div>
+      <div class="dc-role">Sell-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Sale of Geelong Port  -  Victoria's second-largest port, $7B+ annual trade. EY KPI database, price-volume-mix analysis & vendor model review.</p>
+      <div class="dc-tags">
+        <span class="dtag sell">Sell-Side</span><span class="dtag">Infrastructure</span><span class="dtag">Port</span><span class="dtag">PVM Analysis</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="casella" data-s="waste">
+      <div class="dc-head">
+        <div class="dc-client">Casella Waste Systems</div>
+        <div class="vbadge">USD $525M</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Carve-out acquisition of GFL Environmental's solid waste operations across Pennsylvania, Maryland & Delaware. NWC, cash flow analysis & management sessions.</p>
+      <div class="dc-tags">
+        <span class="dtag">Environmental</span><span class="dtag">Carve-Out</span><span class="dtag">NWC</span><span class="dtag">US East Coast</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="criteo" data-s="technology">
+      <div class="dc-head">
+        <div class="dc-client">Criteo S.A.</div>
+        <div class="vbadge">USD $250M</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Acquisition of Iponweb across 6 jurisdictions (Cyprus, UK, US, Japan, Germany, Russia). Multi-jurisdictional NWC and debt analysis, SPA preparation.</p>
+      <div class="dc-tags">
+        <span class="dtag">AdTech</span><span class="dtag">Multi-jurisdictional</span><span class="dtag">NWC</span><span class="dtag">SPA</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="quantium" data-s="technology,retail">
+      <div class="dc-head">
+        <div class="dc-client">Woolworths Group</div>
+        <div class="vbadge">AUD $223M</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Stake increase in Quantium from 47% to 75% (~$800M implied). PowerBI customer analytics on historical transaction-level data.</p>
+      <div class="dc-tags">
+        <span class="dtag">Data Science</span><span class="dtag">AI</span><span class="dtag">Retail</span><span class="dtag">PowerBI</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="fox" data-s="media">
+      <div class="dc-head">
+        <div class="dc-client">Fox Corporation</div>
+        <div class="vbadge soft">Undisclosed</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Acquisition of Dynamic Television, LLC  -  international scripted drama production and distribution business.</p>
+      <div class="dc-tags">
+        <span class="dtag">Media</span><span class="dtag">Television</span><span class="dtag">Content Production</span><span class="dtag">US</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="macqus" data-s="infrastructure">
+      <div class="dc-head">
+        <div class="dc-client">Macquarie Bank US</div>
+        <div class="vbadge soft">Undisclosed</div>
+      </div>
+      <div class="dc-role">Buy-Side · Financial Due Diligence</div>
+      <p class="dc-desc">Acquisition of stevedoring contractor servicing Port of Los Angeles and Port of Oakland.</p>
+      <div class="dc-tags">
+        <span class="dtag">Infrastructure</span><span class="dtag">Ports & Logistics</span><span class="dtag">Stevedoring</span><span class="dtag">US</span>
+      </div>
+    </div>
+
+    <div class="deal-card" data-id="ampol" data-s="infrastructure,sell-side">
+      <div class="dc-head">
+        <div class="dc-client">Ampol -> AGL</div>
+        <div class="vbadge soft">Undisclosed</div>
+      </div>
+      <div class="dc-role">Sell-Side · Deal Execution  -  May 2025</div>
+      <p class="dc-desc">Sale of Ampol's retail electricity business (~50,000 customers) to AGL. Role focused on deal execution: drafting the SPA and working through the Completion Accounts mechanism.</p>
+      <div class="dc-tags">
+        <span class="dtag sell">Sell-Side</span><span class="dtag">Energy</span><span class="dtag">SPA Drafting</span><span class="dtag">Completion Accounts</span>
+      </div>
+    </div>
+
+    <!-- TO ADD A NEW DEAL CARD: copy the block above and paste it here,
+         update the text, and add a matching entry to the DEALS array below -->
+
+  </div><!-- end deal-grid -->
+
+  <!-- Sector breakdown -->
+  <div class="sector-chart reveal">
+    <div class="sc-hd">Transaction Volume by Sector</div>
+    <div class="sc-row"><span class="sc-nm">Infrastructure</span><div class="sc-track"><div class="sc-fill" data-w="100"></div></div><span class="sc-ct">3 deals</span></div>
+    <div class="sc-row"><span class="sc-nm">Technology</span><div class="sc-track"><div class="sc-fill" data-w="100"></div></div><span class="sc-ct">3 deals</span></div>
+    <div class="sc-row"><span class="sc-nm">Media & Sports</span><div class="sc-track"><div class="sc-fill" data-w="67"></div></div><span class="sc-ct">2 deals</span></div>
+    <div class="sc-row"><span class="sc-nm">Environmental</span><div class="sc-track"><div class="sc-fill" data-w="33"></div></div><span class="sc-ct">1 deal</span></div>
+    <div class="sc-row"><span class="sc-nm">Gaming</span><div class="sc-track"><div class="sc-fill" data-w="33"></div></div><span class="sc-ct">1 deal</span></div>
+    <div class="sc-row"><span class="sc-nm">Energy</span><div class="sc-track"><div class="sc-fill" data-w="33"></div></div><span class="sc-ct">1 deal</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec">
+  <p class="sec-lbl">Career</p>
+  <h2 class="sec-h reveal">Experience</h2>
+
+  <div class="exp-item reveal">
+    <div class="exp-top"><div class="exp-co">Ampol</div><span class="exp-badge">Current</span></div>
+    <div class="exp-per">Sep 2024  -  Present</div>
+    <div class="exp-loc">Sydney, Australia</div>
+    <div class="exp-role">Energy Solutions  -  Commercial Finance</div>
+    <p class="exp-desc">Supporting commercial finance across Ampol's Future Energy division. Operating models for Retail electricity and NZ Private Charging, P&L tracking, and cross-functional collaboration on strategic initiatives including the divestment of Ampol Retail Energy to AGL (May 2025).</p>
+    <div class="etags">
+      <span class="etag">Energy Transition</span><span class="etag">Commercial Finance</span><span class="etag">Decarbonisation</span><span class="etag">Operating Models</span><span class="etag">SPA Drafting</span>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-top"><div class="exp-co">EY</div><span class="exp-badge">Transaction Diligence</span></div>
+    <div class="exp-per">Feb 2021  -  Sep 2024</div>
+    <div class="exp-loc">Sydney, Australia & New York, US</div>
+    <div class="sub-list">
+      <div class="sub"><div class="sub-t">Manager  -  Strategy & Transactions</div><div class="sub-p">Jul 2023  -  Sep 2024</div><div class="sub-l">Sydney</div></div>
+      <div class="sub"><div class="sub-t">Senior Consultant  -  Strategy & Transactions</div><div class="sub-p">Jul 2022  -  Sep 2023</div><div class="sub-l">New York</div></div>
+      <div class="sub"><div class="sub-t">Senior Consultant  -  Strategy & Transactions</div><div class="sub-p">Feb 2021  -  Jul 2022</div><div class="sub-l">Sydney</div></div>
+    </div>
+    <p class="exp-desc">Buy-side and sell-side financial due diligence for M&A across private equity and corporate clients. Led diligence reports, EBITDA/NWC/net debt analyses, SPA/PPA review, and cross-functional coordination across tax, valuations and integration.</p>
+    <div class="etags">
+      <span class="etag">Transaction Diligence</span><span class="etag">M&A</span><span class="etag">SPA Review</span><span class="etag">EBITDA Analysis</span><span class="etag">Private Equity</span>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-top"><div class="exp-co">EY  -  Audit & Assurance</div></div>
+    <div class="exp-per">Jul 2018  -  Feb 2021</div>
+    <div class="exp-loc">Sydney, Australia</div>
+    <div class="sub-list">
+      <div class="sub"><div class="sub-t">Senior Associate  -  Real Estate, Consumer Products & FMCG</div><div class="sub-p">Oct 2020  -  Feb 2021</div></div>
+      <div class="sub"><div class="sub-t">Associate  -  Real Estate, Consumer Products & FMCG</div><div class="sub-p">Jul 2018  -  Sep 2020</div></div>
+    </div>
+    <p class="exp-desc">Assurance services across Real Estate, FMCG and Consumer Products. Managed onshore and offshore teams, applied technical accounting knowledge under time pressure.</p>
+    <div class="etags">
+      <span class="etag">Audit & Assurance</span><span class="etag">Real Estate</span><span class="etag">FMCG</span><span class="etag">Team Leadership</span>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-top"><div class="exp-co">Coca-Cola Amatil</div><span class="exp-badge">Internship</span></div>
+    <div class="exp-per">Dec 2016  -  Jul 2017</div>
+    <div class="exp-loc">Sydney, Australia</div>
+    <div class="exp-role">Group Finance Sales Analyst</div>
+    <p class="exp-desc">Group Reporting and Analysis  -  financial reporting preparation across the group.</p>
+    <div class="etags"><span class="etag">Group Reporting</span><span class="etag">FMCG</span></div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-top"><div class="exp-co">Commonwealth Bank</div><span class="exp-badge">Internship</span></div>
+    <div class="exp-per">Jul 2015  -  Jan 2016</div>
+    <div class="exp-loc">Sydney, Australia</div>
+    <div class="exp-role">Finance Intern  -  Institutional Banking & Markets</div>
+    <p class="exp-desc">Monthly reporting within IB&M, gaining foundational exposure to institutional finance.</p>
+    <div class="etags"><span class="etag">Institutional Banking</span><span class="etag">Reporting</span></div>
+  </div>
+
+</section>
+
+<!-- EDUCATION -->
+<section class="sec">
+  <p class="sec-lbl">Academic</p>
+  <h2 class="sec-h reveal">Education</h2>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-i">Chartered Accountants ANZ</div>
+      <div class="edu-d">Chartered Accounting  -  Accounting & Finance</div>
+      <div class="edu-y">2019  -  2021</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-i">UTS Sydney</div>
+      <div class="edu-d">Bachelor of Accounting, Co-operative Scholarship (Distinction Average)</div>
+      <div class="edu-y">2013  -  2017</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-i">Knox Grammar School</div>
+      <div class="edu-d">HSC  -  ATAR 96.90 · Duke of Edinburgh (Bronze, Silver & Gold)</div>
+      <div class="edu-y">Sydney</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec">
+  <p class="sec-lbl">Expertise</p>
+  <h2 class="sec-h reveal">Skills</h2>
+  <div class="reveal">
+    <div class="sk-list">
+      <div class="sk-row"><span class="sk-nm">Transaction Due Diligence</span><div class="sk-tr"><div class="sk-fi" data-w="95"></div></div></div>
+      <div class="sk-row"><span class="sk-nm">Financial Modelling</span><div class="sk-tr"><div class="sk-fi" data-w="92"></div></div></div>
+      <div class="sk-row"><span class="sk-nm">M&A Advisory</span><div class="sk-tr"><div class="sk-fi" data-w="90"></div></div></div>
+      <div class="sk-row"><span class="sk-nm">SPA / PPA Review</span><div class="sk-tr"><div class="sk-fi" data-w="85"></div></div></div>
+      <div class="sk-row"><span class="sk-nm">Commercial Finance</span><div class="sk-tr"><div class="sk-fi" data-w="82"></div></div></div>
+      <div class="sk-row"><span class="sk-nm">Energy Transition</span><div class="sk-tr"><div class="sk-fi" data-w="75"></div></div></div>
+    </div>
+    <div class="pills">
+      <span class="pill">Excel</span><span class="pill">PowerBI</span><span class="pill">Alteryx</span>
+      <span class="pill">Clarity</span><span class="pill">PowerPoint</span>
+      <span class="pill">Infrastructure</span><span class="pill">Energy & Fuels</span>
+      <span class="pill">Technology</span><span class="pill">FMCG</span><span class="pill">Real Estate</span>
+      <span class="pill">Gaming</span><span class="pill">Media & Sports</span>
+      <span class="pill">Stakeholder Management</span><span class="pill">Team Leadership</span>
+      <span class="pill">Cross-border M&A</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<div class="connect reveal">
+  <h2>Get in Touch</h2>
+  <p>Open to connections, conversations and new opportunities.</p>
+  <div class="clinks">
+    <a href="https://au.linkedin.com/in/fin-scott-898bb064" target="_blank" rel="noopener" class="cbtn primary">
+      Connect on LinkedIn
+    </a>
+    <button class="cbtn secondary" id="emailBtn">Email Fin</button>
+  </div>
+</div>
+
+<footer>
+  <span>&copy; 2026 Fin Scott  -  CA</span>
+  <span>Energy Solutions · Sydney, Australia</span>
+</footer>
+
+<!-- ============================================================
+  JAVASCRIPT
+  All deal data lives here. To add a new deal:
+    1. Copy any entry in the DEALS array below and fill in the fields.
+    2. Add a matching .deal-card block in the HTML above.
+  ============================================================ -->
+<script>
+(function () {
+
+// =============================================================
+// DEAL DATA  -  edit this array to add/change deals
+// Fields: id, label, client, role, value, valueStyle (gold/soft/red),
+//         valueBn (numeric billions, 0 = undisclosed), industry,
+//         geo, type, year, desc, cons[], tags[]
+// =============================================================
+var DEALS = [
+  {
+    id: 'coupa',
+    label: 'Coupa Software',
+    client: 'Warburg Pincus',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'USD $8.0B EV', valueStyle: 'red', valueBn: 8.0,
+    industry: 'Technology / SaaS', geo: 'United States',
+    type: 'Public Company Bid (Unsuccessful)', year: '2022',
+    desc: "Advised Warburg Pincus on its bid to acquire Coupa Software (NASDAQ: COUP), a market-leading cloud Business Spend Management platform. The deal was ultimately won by Thoma Bravo at $8B  -  a 77% premium to the unaffected share price.",
+    cons: [
+      'SaaS revenue quality and ARR/NRR cohort analysis across the enterprise customer base',
+      'Assessment of competitive dynamics and market positioning in BSM software',
+      'Analysis of cost base scalability and path to profitability under a take-private structure',
+      'Evaluation of macro risk on enterprise software deal cycles'
+    ],
+    tags: ['SaaS','Technology','Private Equity','Unsuccessful','US']
+  },
+  {
+    id: 'vicroads',
+    label: 'VicRoads JV',
+    client: 'Macquarie Asset Management',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'AUD $7.9B', valueStyle: 'gold', valueBn: 7.9,
+    industry: 'Infrastructure / Government Services', geo: 'Australia (Victoria)',
+    type: 'Joint Venture  -  40-Year Concession', year: '2022',
+    desc: "Advised a Macquarie-led consortium on the successful entry into a 40-year JV with the Victorian Government to operate VicRoads registration, licensing and custom plates businesses  -  the largest government services privatisation in Victorian history.",
+    cons: [
+      'Revenue modelling of government-backed registration and licensing volumes across Victoria',
+      'Assessment of regulatory framework and concession terms over a 40-year horizon',
+      'Analysis of inflationary price escalation mechanisms embedded in the concession agreement',
+      'Coordination across Macquarie, superannuation fund co-investors and State Government advisors'
+    ],
+    tags: ['Infrastructure','Government JV','40-Year Concession','Australia']
+  },
+  {
+    id: 'entain',
+    label: 'Entain / WA TAB',
+    client: 'Entain Group',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'AUD ~$3.5B', valueStyle: 'soft', valueBn: 3.5,
+    industry: 'Gaming & Wagering', geo: 'Australia (WA)',
+    type: 'Strategic Acquisition Bid', year: '2021',
+    desc: "Advised Entain (owner of Ladbrokes and Neds) on its potential acquisition of the Western Australia TAB from Tabcorp. The bid would have created Australia's largest integrated wagering operator with ~47% combined market share.",
+    cons: [
+      'Regulatory complexity of acquiring a State-licensed wagering monopoly',
+      'Revenue sustainability of retail TAB vs growth of online wagering channels',
+      "Assessment of brand portfolio overlap between Entain's existing assets and TAB",
+      'Competition and regulatory approval risk across Federal and State frameworks'
+    ],
+    tags: ['Gaming','Wagering','Regulatory','Australia']
+  },
+  {
+    id: 'fanatics',
+    label: 'Fanatics / Panini',
+    client: 'Fanatics Collectibles',
+    role: 'Financial Due Diligence',
+    value: '~USD $2B+', valueStyle: 'soft', valueBn: 2.0,
+    industry: 'Media & Sports Licensing', geo: 'United States',
+    type: 'License Restructuring & Acceleration', year: '2023',
+    desc: "Advised Fanatics on the restructuring and early acceleration of expiring trading card licenses and NFT rights from Panini America. Perimeter included NBA, NFL, UFC, WWE and Collegiate Licensing Company (CLC) rights.",
+    cons: [
+      'Valuation of remaining license cash flows and NFT rights across NBA, NFL, UFC and WWE',
+      'Risk assessment of early termination provisions and expiring license obligations',
+      'Revenue quality across trading card product lines, NFT platforms and digital collectibles',
+      "Due diligence on Panini's customer relationships and distribution networks"
+    ],
+    tags: ['Sports Licensing','Media','NFT','NBA','NFL','UFC','WWE']
+  },
+  {
+    id: 'geelong',
+    label: 'Geelong Port',
+    client: 'Brookfield Asset Management',
+    role: 'Sell-Side · Financial Due Diligence',
+    value: 'AUD ~$1.1B', valueStyle: 'soft', valueBn: 1.1,
+    industry: 'Infrastructure / Ports', geo: 'Australia (Victoria)',
+    type: 'Asset Sale  -  Sell-Side', year: '2022',
+    desc: "Advised Brookfield on the sale of Geelong Port  -  Victoria's second-largest port handling $7B+ of annual trade across bulk liquids, grain and general cargo.",
+    cons: [
+      'EY financial and KPI database compiled across historical volumes, revenues and costs',
+      'Detailed price-volume-mix analysis across multi-cargo revenue streams',
+      'Adjusted EBITDA analysis and identification of non-recurring items',
+      "Led management sessions and reviewed the investment bank's vendor model"
+    ],
+    tags: ['Infrastructure','Port','Sell-Side','PVM Analysis','Australia']
+  },
+  {
+    id: 'casella',
+    label: 'Casella / GFL',
+    client: 'Casella Waste Systems',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'USD $525M', valueStyle: 'gold', valueBn: 0.525,
+    industry: 'Environmental Services', geo: 'US East Coast (PA, MD, DE)',
+    type: 'Carve-Out Acquisition', year: '2023',
+    desc: "Advised Casella on the carve-out acquisition of GFL Environmental's solid waste collection, transfer and recycling operations across Pennsylvania, Maryland and Delaware.",
+    cons: [
+      'Net working capital analysis specific to carve-out perimeter assets',
+      'Cash flow quality assessment across route-level waste collection operations',
+      "Identification of stranded costs and dis-synergies from separation of GFL's US East Coast operations",
+      'Led management sessions to validate operational and financial assumptions'
+    ],
+    tags: ['Environmental','Carve-Out','NWC','Cash Flow','US East Coast']
+  },
+  {
+    id: 'criteo',
+    label: 'Criteo / Iponweb',
+    client: 'Criteo S.A.',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'USD $250M', valueStyle: 'gold', valueBn: 0.25,
+    industry: 'Technology / AdTech', geo: 'Multi-jurisdictional (6 countries)',
+    type: 'Cross-Border Strategic Acquisition', year: '2022',
+    desc: 'Advised Criteo on the acquisition of Iponweb, a media and advertising technology platform. Led NWC and debt analysis across a consolidated group spanning Cyprus, UK, US, Japan, Germany and Russia.',
+    cons: [
+      'Multi-entity balance sheet consolidation across 6 jurisdictions with differing GAAP standards',
+      'NWC normalisation accounting for seasonal and structural differences across geographies',
+      'Debt and debt-like item identification including inter-company balances and local regulatory liabilities',
+      'Forecast analysis with focus on post-COVID revenue recovery and pipeline customer assessment'
+    ],
+    tags: ['AdTech','Technology','Multi-jurisdictional','NWC','SPA']
+  },
+  {
+    id: 'quantium',
+    label: 'Woolworths / Quantium',
+    client: 'Woolworths Group',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'AUD $223M', valueStyle: 'gold', valueBn: 0.223,
+    industry: 'Technology / Data Science', geo: 'Australia',
+    type: 'Strategic Investment (Stake Increase)', year: '2021',
+    desc: 'Advised Woolworths on increasing its stake in Quantium from 47% to 75% at an implied valuation of ~$800M. Executed PowerBI customer analysis on historical transaction-level data.',
+    cons: [
+      'Customer-based revenue analysis to assess sales cycles and pipeline conversion rates',
+      'Customer retention and churn modelling across existing and contracted client cohorts',
+      "Assessment of Quantium's data asset value and competitive moat in Australian retail analytics",
+      'Revenue quality review given high reliance on Woolworths as anchor customer'
+    ],
+    tags: ['Data Science','AI','Retail','Customer Analytics','PowerBI']
+  },
+  {
+    id: 'fox',
+    label: 'Fox / Dynamic TV',
+    client: 'Fox Corporation',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'Undisclosed', valueStyle: 'soft', valueBn: 0,
+    industry: 'Media / Television', geo: 'United States / International',
+    type: 'Strategic Acquisition', year: '2022',
+    desc: 'Advised Fox Corporation (NASDAQ: FOXA) on the acquisition of Dynamic Television, LLC  -  an international television production and distribution company specialising in scripted drama content.',
+    cons: [
+      'Revenue quality of international content licensing and distribution agreements',
+      'Assessment of development pipeline value and rights ownership structure',
+      'Analysis of production cost base and working capital requirements',
+      'Review of key talent and creator agreements embedded in the business'
+    ],
+    tags: ['Media','Television','Content Production','US']
+  },
+  {
+    id: 'macqus',
+    label: 'Macquarie / Port LA',
+    client: 'Macquarie Bank US',
+    role: 'Buy-Side · Financial Due Diligence',
+    value: 'Undisclosed', valueStyle: 'soft', valueBn: 0,
+    industry: 'Infrastructure / Logistics', geo: 'United States (West Coast)',
+    type: 'Strategic Acquisition', year: '2023',
+    desc: "Advised Macquarie Bank's US branch on the acquisition of a stevedoring contractor providing services to the Port of Los Angeles and Port of Oakland.",
+    cons: [
+      'Revenue analysis across stevedoring service contracts and volume-based fee arrangements',
+      'Contract renewal risk and client concentration at Port of LA and Port of Oakland',
+      'Labour cost analysis given union-driven workforce structure in US port operations',
+      'Capital expenditure requirements for equipment maintenance and replacement'
+    ],
+    tags: ['Infrastructure','Ports & Logistics','Stevedoring','US West Coast']
+  },
+  {
+    id: 'ampol',
+    label: 'Ampol to AGL',
+    client: 'Ampol',
+    role: 'Sell-Side · Deal Execution',
+    value: 'Undisclosed', valueStyle: 'soft', valueBn: 0,
+    industry: 'Energy / Retail Electricity', geo: 'Australia',
+    type: 'Business Divestment  -  Sell-Side', year: 'May 2025',
+    desc: "Sale of Ampol's retail electricity business to AGL, completed May 2025, transferring approximately 50,000 retail electricity customers. Fin's role focused on deal execution  -  drafting the SPA and working through the Completion Accounts mechanism to close.",
+    cons: [
+      'Drafting SPA financial schedules including representations, warranties and indemnities specific to the ~50,000-customer retail electricity book',
+      'Designing and working through the Completion Accounts mechanism to determine final consideration at close, including assessment of locked-box vs. closing accounts structure',
+      'Quantifying and agreeing balance sheet adjustments at completion across deferred revenue, accrued costs and customer liabilities',
+      'Coordinating with legal, tax and operations teams to resolve completion conditions and support a clean customer portfolio transfer to AGL'
+    ],
+    tags: ['Energy','Retail Electricity','Sell-Side','SPA Drafting','Completion Accounts','Deal Execution']
+  }
+  // ADD NEW DEALS HERE  -  copy any entry above and add a comma after the last }
+];
+
+// =============================================================
+// BUILD BAR CHART
+// =============================================================
+var MAX_BN = 8.0;
+var CHART_H = 150; // px height for tallest bar
+
+var sorted = DEALS.slice().sort(function(a, b) { return b.valueBn - a.valueBn; });
+var chartInner = document.getElementById('chartInner');
+
+sorted.forEach(function(d) {
+  var pct = d.valueBn > 0 ? d.valueBn / MAX_BN : 0.05;
+  var bh  = Math.round(pct * CHART_H);
+  var lbl = d.valueBn > 0 ? d.value : 'Undisclosed';
+
+  var col = document.createElement('div');
+  col.className = 'bar-col';
+
+  var fill = document.createElement('div');
+  fill.className = 'bar-fill';
+  fill.setAttribute('data-val', lbl);
+  fill.setAttribute('data-h', bh);
+  fill.style.height = '0px';
+
+  var barLbl = document.createElement('span');
+  barLbl.className = 'bar-lbl';
+  barLbl.textContent = d.label;
+
+  col.appendChild(fill);
+  col.appendChild(barLbl);
+  col.addEventListener('click', function() { showPanel(d, col); });
+  chartInner.appendChild(col);
+});
+
+// Animate bars when chart scrolls into view
+var chartAnimated = false;
+var chartEl = document.getElementById('chartInner');
+var chartObs = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting && !chartAnimated) {
+    chartAnimated = true;
+    var fills = chartEl.querySelectorAll('.bar-fill');
+    fills.forEach(function(f, i) {
+      setTimeout(function() { f.style.height = f.getAttribute('data-h') + 'px'; }, i * 80);
+    });
+    chartObs.disconnect();
+  }
+}, { threshold: 0.2 });
+chartObs.observe(chartEl);
+
+// =============================================================
+// DEAL PANEL
+// =============================================================
+function showPanel(d, colEl) {
+  document.querySelectorAll('.bar-col').forEach(function(c) { c.classList.remove('active'); });
+  colEl.classList.add('active');
+
+  document.getElementById('dpEy').textContent  = d.industry + ' · ' + d.year;
+  document.getElementById('dpNm').textContent  = d.client;
+  document.getElementById('dpRl').textContent  = d.role;
+
+  var badgeCls = d.valueStyle === 'gold' ? 'dp-badge' : ('dp-badge ' + d.valueStyle);
+  document.getElementById('dpBadge').innerHTML = '<span class="' + badgeCls + '">' + d.value + '</span>';
+
+  document.getElementById('dpMeta').innerHTML =
+    '<div class="dp-mi"><label>Industry</label><span>' + d.industry + '</span></div>' +
+    '<div class="dp-mi"><label>Geography</label><span>' + d.geo + '</span></div>' +
+    '<div class="dp-mi"><label>Deal Type</label><span>' + d.type + '</span></div>' +
+    '<div class="dp-mi"><label>Year</label><span>' + d.year + '</span></div>';
+
+  document.getElementById('dpDesc').textContent = d.desc;
+
+  document.getElementById('dpCons').innerHTML = d.cons.map(function(c) {
+    return '<div class="dp-con">' + c + '</div>';
+  }).join('');
+
+  var sellTags = { 'Sell-Side': 'sell', 'SPA Drafting': 'sell', 'Completion Accounts': 'sell', 'Deal Execution': 'sell' };
+  var failTags = { 'Unsuccessful': 'red', 'Unsuccessful Bid': 'red' };
+  document.getElementById('dpTags').innerHTML = d.tags.map(function(t) {
+    var cls = 'dtag' + (sellTags[t] ? ' sell' : '') + (failTags[t] ? ' red' : '');
+    return '<span class="' + cls + '">' + t + '</span>';
+  }).join('');
+
+  var panel = document.getElementById('dealPanel');
+  panel.classList.add('show');
+  setTimeout(function() { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+}
+
+document.getElementById('dpClose').addEventListener('click', function() {
+  document.getElementById('dealPanel').classList.remove('show');
+  document.querySelectorAll('.bar-col').forEach(function(c) { c.classList.remove('active'); });
+});
+
+// =============================================================
+// CARD FILTERS
+// =============================================================
+document.querySelectorAll('.fbtn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.fbtn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = btn.getAttribute('data-f');
+    document.querySelectorAll('.deal-card').forEach(function(card) {
+      if (f === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        var sectors = (card.getAttribute('data-s') || '').split(',');
+        card.classList.toggle('hidden', sectors.indexOf(f) === -1);
+      }
+    });
+  });
+});
+
+// =============================================================
+// SCROLL ANIMATIONS
+// =============================================================
+// Reveal on scroll
+var revObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e, i) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.classList.add('vis'); }, i * 55);
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(function(el) { revObs.observe(el); });
+
+// Skill bar fills
+var skObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.style.width = e.target.getAttribute('data-w') + '%'; }, 100);
+      skObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.sk-fi').forEach(function(b) { skObs.observe(b); });
+
+// Sector chart fills
+var sectorDone = false;
+var sectorObs = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting && !sectorDone) {
+    sectorDone = true;
+    document.querySelectorAll('.sc-fill').forEach(function(f) {
+      setTimeout(function() { f.style.width = f.getAttribute('data-w') + '%'; }, 150);
+    });
+    sectorObs.disconnect();
+  }
+}, { threshold: 0.2 });
+var sectorEl = document.querySelector('.sector-chart');
+if (sectorEl) sectorObs.observe(sectorEl);
+
+// KPI counter
+var kpiDone = false;
+var kpiEl   = document.getElementById('kpiCount');
+var kpiObs  = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting && !kpiDone && kpiEl) {
+    kpiDone = true;
+    var total = DEALS.reduce(function(s, d) { return s + d.valueBn; }, 0);
+    var target = Math.round(total * 10) / 10;
+    var v = 0;
+    var timer = setInterval(function() {
+      v = Math.min(v + 0.3, target);
+      kpiEl.textContent = '$' + v.toFixed(1) + 'B+';
+      if (v >= target) clearInterval(timer);
+    }, 18);
+    kpiObs.disconnect();
+  }
+}, { threshold: 0.3 });
+if (kpiEl) kpiObs.observe(kpiEl);
+
+// =============================================================
+// EMAIL BUTTON
+// =============================================================
+document.getElementById('emailBtn').addEventListener('click', function() {
+  var parts = ['fins', 'cott1', '@', 'outl', 'ook.com'];
+  window.location.href = 'mai' + 'lto:' + parts.join('');
+});
+
+})(); // end IIFE
+</script>
+
+</body>
+</html>
