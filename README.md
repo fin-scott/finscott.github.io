@@ -1,2 +1,2 @@
-# finscott.github.io
+# fin-scott.github.io
 CV Fin Scott
